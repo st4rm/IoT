@@ -1,3 +1,6 @@
+# Control Motion Sensor and Camera.
+# When Motion Sensor detect somthing, Camera start show preview clip on display.
+
 from gpiozero import MotionSensor
 from datetime import datetime
 from picamera import PiCamera

@@ -35,6 +35,6 @@ while True:
 		f.write(data)
 	else:
 		print('Failed to get reading. Try again!')
-	time.sleep(2) # write data every 1 hours.
+	time.sleep(600) # write data every 10 minutes.
 
 f.clolse()

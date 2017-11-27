@@ -28,11 +28,13 @@ while True:
 # guarantee the timing of calls to read the sensor).
 # If this happens try again!
 	if humidity is not None and temperature is not None:
+                now=datetime.now()
 		data="{0:%Y}-{0:%m}-{0:%d} {0:%H}:{0:%M}:{0:%S}".format(now)
-		data += '     Temp={0:0.1f}*C Humidity={1:0.1f}%'.format(temperature, humidity)
+		data += '     Temp={0:0.1f}*C Humidity={1:0.1f}%\n'.format(temperature, humidity)
+                print(data)
 		f.write(data)
 	else:
 		print('Failed to get reading. Try again!')
-	time.sleep(3600) # write data every 1 hours.
+	time.sleep(2) # write data every 1 hours.
 
 f.clolse()

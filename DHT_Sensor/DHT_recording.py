@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 import Adafruit_DHT
+import time
+from datetime import datetime
 
 # Sensor should be set to Adafruit_DHT.DHT11, 
 # Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302.
@@ -14,13 +16,25 @@ pin = 23
 # to 15 times to get a sensor reading (waiting 2 seconds between each retry).
 humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 
+now=datetime.now()
+filename="{0:%Y}-{0:%m}-{0:%d}".format(now)
+filename +=".txt"
 
+f= open(filename, 'a')
+
+while True:
 # Note that sometimes you won't get a reading and
 # the results will be null (because Linux can't
 # guarantee the timing of calls to read the sensor).
 # If this happens try again!
-if humidity is not None and temperature is not None:
-	print('Temp={0:0.1f}*C Humidity={1:0.1f}%'.format(temperature, humidity))
-else:
-	print('Failed to get reading. Try again!')
+	if humidity is not None and temperature is not None:
+                now=datetime.now()
+		data="{0:%Y}-{0:%m}-{0:%d} {0:%H}:{0:%M}:{0:%S}".format(now)
+		data += '     Temp={0:0.1f}*C Humidity={1:0.1f}%\n'.format(temperature, humidity)
+                print(data) # print result to standard output(Monitor) 
+		f.write(data) # print result to file
+	else:
+		print('Failed to get reading. Try again!')
+	time.sleep(600) # write data every 10 minutes.
 
+f.clolse()

@@ -38,7 +38,7 @@ while True:
                 now=datetime.now()
 		data="{0:%Y}-{0:%m}-{0:%d} {0:%H}:{0:%M}:{0:%S}".format(now)
 		data += '     Temp={0:0.1f}*C Humidity={1:0.1f}%\n'.format(temperature, humidity)
-                print(data)
+                # print(data)
 		f.write(data)
 	else:
 		print('Failed to get reading. Try again!')

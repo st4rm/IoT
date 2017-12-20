@@ -18,11 +18,17 @@ pir=MotionSensor(gpioin)
 
 camera = PiCamera()
 
+recdir = "record"  # define directory name for recording data that saved.
+if not os.path.exists(recdir):
+	os.makedirs(recdir)
+
+    
 while True:
 
     ## define filename
     now=datetime.now()
-    filename="{0:%Y}-{0:%m}-{0:%d} {0:%H}:{0:%M}:{0:%S}".format(now)
+    filename = recdir
+    filename += "/{0:%Y}-{0:%m}-{0:%d} {0:%H}:{0:%M}:{0:%S}".format(now)
     filename += ".h264"
     
     ## if motion is deteted, turn on LED and start recording.

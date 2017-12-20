@@ -2,6 +2,7 @@
 
 import Adafruit_DHT
 import time
+import os
 from datetime import datetime
 
 # Sensor should be set to Adafruit_DHT.DHT11, 
@@ -12,8 +13,13 @@ sensor = Adafruit_DHT.DHT11
 # connected to GPIO23.
 pin = 23
 
+recdir = "record"
+if not os.path.exists(recdir):
+	os.makedirs(recdir)
+
 now=datetime.now()
-filename="{0:%Y}-{0:%m}-{0:%d}".format(now)
+filename = "record/"
+filename += "{0:%Y}-{0:%m}-{0:%d}".format(now)
 filename +=".txt"
 
 f= open(filename, 'a')

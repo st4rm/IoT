@@ -13,13 +13,13 @@ sensor = Adafruit_DHT.DHT11
 # connected to GPIO23.
 pin = 23
 
-recdir = "record"
+recdir = "record"  # define directory name for recording data that saved.
 if not os.path.exists(recdir):
 	os.makedirs(recdir)
 
 now=datetime.now()
-filename = "record/"
-filename += "{0:%Y}-{0:%m}-{0:%d}".format(now)
+filename = recdir
+filename += "/{0:%Y}-{0:%m}-{0:%d}".format(now)
 filename +=".txt"
 
 f= open(filename, 'a')

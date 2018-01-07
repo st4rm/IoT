@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import os
 from gpiozero import MotionSensor
 from datetime import datetime
 from picamera import PiCamera

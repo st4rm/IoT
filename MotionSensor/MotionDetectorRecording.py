@@ -25,20 +25,25 @@ if not os.path.exists(recdir):
 
     
 while True:
+    
+    # if motion is deteted,
+    pir.wait_for_motion()
+    print("Motion detected!")
+    
+    ## Turn on LED
+    GPIO.output(gpioout, 1)
 
     ## define filename
     now=datetime.now()
     filename = recdir
     filename += "/{0:%Y}-{0:%m}-{0:%d} {0:%H}:{0:%M}:{0:%S}".format(now)
     filename += ".h264"
-    
-    ## if motion is deteted, turn on LED and start recording.
-    pir.wait_for_motion()
-    print("Motion detected!")
-    GPIO.output(gpioout, 1)
+
+    ## start recording
     camera.start_recording(filename)
     
-    ## if motion is not detected, turn off LED and stop recording
+
+    # if motion is not detected, turn off LED and stop recording
     pir.wait_for_no_motion()
     GPIO.output(gpioout, 0)
     camera.stop_recording()
